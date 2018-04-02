@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta HTTP-EQUIV="EXPIRES" CONTENT="-1">
+		<title>Warehouse Wars</title>
+		<script src="lib/jquery-3.3.1.min.js" > </script>
+		<script src="lib/react.js"></script>
+		<script src="lib/react-dom.js"></script>
+		<script src="lib/babel.min.js"></script>
+
+		<script type="text/babel">
+/*-----------Start Login Component---------------------------------------------------------------------------------*/
+			/*class LoginButton extends React.Component {
+				constructor(props) {
+					super(props);
+				}
+				render(props){
+					return (
+						<button onClick={this.props.clickHandler} > Login </button>
+					);
+				}
+			}*/
+
+
+			class LoginComponent extends React.Component {
+				constructor(props) {
+					super(props);
+					this.state = { user:'',password:'',isHidden: false};
+					//this.loginClickHandler = this.loginClickHandler.bind(this);
+					this.handleInputChange = this.handleInputChange.bind(this);
+					this.registerClick = this.registerClick.bind(this);
+					this.handleLoginSumbit = this.handleLoginSubmit.bind(this);
+				}
+
+				/*loginClickHandler(e){
+					console.log("at loginClickHandler");
+					//call backend function and then get details back 
+					this.setState({isHidden: true});
+				}*/
+				
+				handleInputChange(e){
+					console.log(e.target.name, e.target.value);
+					this.setState({[e.target.name]: e.target.value});
+					console.log(this.state.user);
+					console.log("handleInputChange");
+				}
+
+				handleLoginSubmit(e){
+					e.preventDefault();
+					var data = new FormData(e.target);
+					console.log(data.user);
+					console.log("at login submit");
+					//check with backend whether login credentials work
+				}
+
+				registerClick(e) { 
+					e.preventDefault();
+					this.setState({isHidden: true});
+					console.log("at registerClick");
+					ReactDOM.render(<RegisterComponent />,document.getElementById("register"));
+				}
+
+				render(){
+					const style = this.state.isHidden ? {display: 'none'} : {};
+					//FIX ERROR DISPLAYS 
+					return(
+						<form style={style} onSubmit={this.handleLoginSubmit}>
+							<center>
+							<h2>Login</h2>
+							Username: <input type="text" name="user" label="Username" placeholder="Enter your username" value={this.state.user} onChange={this.handleInputChange} required/><br/>
+							<br/>
+							Password: <input type="password" name="password" label="Password" placeholder="Enter your password" value={this.state.password} onChange={this.handleInputChange} required/><br/>
+							<br/>
+							<input type="submit" value="Submit" label="Login"/>
+							<br/>
+							<a href="#" onClick={this.registerClick}>
+								Don't have an account? Click here to register!
+							</a>
+							</center>
+						</form>
+					);
+				}
+			}
+			ReactDOM.render(<LoginComponent />,document.getElementById("Login"));
+/*-----------End Login Component---------------------------------------------------------------------------------*/
+
+/*-----------Start Register Component---------------------------------------------------------------------------------*/
+			//register component
+			class RegisterButton extends React.Component {
+				constructor(props) {
+					super(props);
+				}
+				render(props){
+					return (
+						<button onClick={this.props.clickHandler} > Register </button>
+					);
+				}
+			}
+
+			class RegisterComponent extends React.Component {
+				constructor(props) {
+					super(props);
+					this.state = { user:'',password:'',isHidden:false};
+					this.registerClickHandler = this.registerClickHandler.bind(this);
+					this.handleInputChange = this.handleInputChange.bind(this);
+				}
+
+				registerClickHandler(e){
+					console.log("at registerClickHandler");
+				}
+
+				handleInputChange(e){
+					this.setState({[e.target.name]: e.target.value});
+				}
+				render(){
+					return(
+						<div>
+							<h2>Register</h2>
+							Username: <input type="text" name="user" label="Username" placeholder="Enter your username" value={this.state.user} onChange={this.handleInputChange}/>
+							<div id="usernameError"></div>
+							<br/>
+							Password: <input type="password" name="password" label="Password" placeholder="Enter your password" value={this.state.password} onChange={this.handleInputChange}/>
+							<div id="passwordError"></div>
+							<br/>
+							<RegisterButton clickHandler={this.registerClickHandler} label="Register"/>
+							<br/>
+							<a href="#" onClick={this.registerClick}>
+								Don't have an account? Click here to register!
+							</a>
+						</div>
+					);
+					
+				
+				}
+			}
+
+			/*edit profile component */
+
+
+
+			/*look at worlds component*/
+
+		</script>
+		<style>
+			/* style parts of the legend, the controls and the elements in the stage appropriately */
+		img{
+			height:20px;
+			width:20px;
+		}
+		[id$="Error"]{
+			color: red;
+		}
+		</style>
+	</head>
+	<body bgcolor="ffffff">
+		<!--game should be here-->
+
+			<div id="Login"></div>
+			<div id="register"></div>
+			<div id="loginError"> </div>
+			<div id="profile"></div>
+			<div id="viewprofile" style="text-align:left"></div>
+			<div id="highScoresTitle"></div>
+	</body>
+</html>

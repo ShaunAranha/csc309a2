@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta HTTP-EQUIV="EXPIRES" CONTENT="-1">
+		<title>Warehouse Wars</title>
+		<script language="javascript" src="jquery-3.3.1.min.js" > </script>
+		<script language="javascript" src="ww.js" > </script>
+		<script language="javascript" src="index.js"></script>
+
+		<style>
+			/* style parts of the legend, the controls and the elements in the stage appropriately */
+		img{
+			height:20px;
+			width:20px;
+		}
+		[id$="Error"]{
+			color: red;
+		}
+		</style>
+	</head>
+	<body bgcolor="ffffff">
+		<center>
+			<h1>Warehouse Wars</h1>
+			<table class="game">
+				<tr>
+					<td> <div id="stage"> </div></td>
+					<td>
+						<center>
+							<div id="score">
+								<h2>Score</h2>
+								<div id="time"></div>
+							</div>
+						</center>
+						<center>
+							<h2>Legend</h2>
+							<table>
+								<tr>
+									<td> <img src="icons/blank.gif" id="blankImage" /> </td>
+									<td> <img src="icons/emblem-package-2-24.png" id="boxImage" /> </td>
+									<td> <img src="icons/face-cool-24.png" id="playerImage" /> </td>
+									<td> <img src="icons/face-devil-grin-24.png" id="monsterImage" /> </td>
+									<td> <img src="icons/wall.jpeg" id="wallImage" /> </td>
+								</tr>
+								<tr>
+									<td> Empty <br/> Square </td>
+									<td> Box </td>
+									<td> Player </td>
+									<td> Monster </td>
+									<td> Wall </td>
+								</tr>
+							</table>
+							<h2>Controls</h2>
+							<table>
+								<tr>
+									<td><img src="icons/north_west.svg" id="nw"  /></td>
+									<td><img src="icons/north.svg" id="n" /></td>
+									<td><img src="icons/north_east.svg" id="ne"  /></td>
+								</tr>
+								<tr>
+									<td><img src="icons/west.svg" id="w" /></td>
+									<td>&nbsp;</td>
+									<td><img src="icons/east.svg" id="e" /></td>
+								</tr>
+								<tr>
+									<td><img src="icons/south_west.svg" id="sw" /></td>
+									<td><img src="icons/south.svg" id="s" /></td>
+									<td><img src="icons/south_east.svg" id="se" /></td>
+								</tr>
+							</table>
+						</center>
+						<div id="gameButtons">
+							<input id="pauseGame" type="button" value="Pause" />
+							<input id="startGame" type="button" value="Start" />
+							<input id="restartGame" type="button" value="Restart" />
+							<input id="viewProfile" type="button" value="Profile" />
+							<input id="logout" type="button" value="Logout" />
+						</div>
+					</td>
+				</tr>
+
+						<div id="win">YOU WIN!!!</div>
+						<div id="lose">YOU LOSE!!!</div>
+			</table>
+
+
+			<form id="loginForm">
+			 	<h2>Login</h2>
+			 	Username: <input type="text" name="user" id="username" placeholder="Enter your username" required/>
+			 	<div id="usernameError"></div>
+			 		<br>
+			 		Password: <input type="password" name="password" id="password" placeholder="Enter your password" required/>
+			 	<div id="passwordError"></div>
+			 		<br>
+			 	<input id="loginButton" type="button" value="Login" />
+				<input id="registerAccount" type="button" value="Register"/>
+			 	<div id="loginError"> </div>
+			 </form>
+
+
+
+			 <form id="registerForm">
+					<h2>Register</h2>
+						Username: <input type="text" name="user" id="reguser" placeholder="Enter your username" required/>
+					<div id="reguserError"></div>
+						<br>
+						Name: <input type="text" name="name" id="regfname" placeholder="Enter your first name" required/>
+					<div id="regfnameError"></div>
+						<br>
+						Email Address: <input type="text" name="email" id="regemail" placeholder="Enter email-address" required/>
+					<div id="regemailError"></div>
+						<br>
+					Password: <input type="password" name="password" id="regpass" placeholder="Enter your password" required/>
+					<div id="regpassError"></div>
+						<br>
+					Confirm Password: <input type="password" name="cpassword" id="regcpass" placeholder="Confirm Password" required/>
+					<div id="regcpassError"></div>
+						<br>
+					Gender:   <input type="radio" name="gender" id="male" value="Male" > Male
+  									<input type="radio" name="gender" id="female"value="Female"> Female
+  									<input type="radio" name="gender" id="other" value="Other"> Other
+						<br>
+					<div id="genderError"></div>
+					<input id="registerButton" type="button" value="Register"/>
+					<div id="loginError"> </div>
+			</form>
+
+
+
+			<form id="profileForm">
+				 <h2>Edit Profile</h2>
+					 Username: <input type="text" name="user" id="edituser" placeholder="Enter your username" required/>
+				 <div id="edituserError"></div>
+					 <br>
+					  Name: <input type="text" name="name" id="editfname" placeholder="Enter your first name" required/>
+				 <div id="editfnameError"></div>
+					 <br>
+					 Email Address: <input type="text" name="email" id="editemail" placeholder="Enter email-address" required/>
+				 <div id="editemailError"></div>
+					 <br>
+				 Password: <input type="password" name="password" id="editpass" placeholder="Enter your password" required/>
+				 <div id="editpassError"></div>
+					 <br>
+				 Confirm Password: <input type="password" name="cpass" id="editcpass" placeholder="Confirm Password" required/>
+				 <div id="editcpassError"></div>
+					 <br>
+				 Gender:   <input type="radio" name="gender" id="emale" value="Male" > Male
+									 <input type="radio" name="gender" id="efemale"value="Female"> Female
+									 <input type="radio" name="gender" id="eother" value="Other"> Other
+					 <br>
+				 <div id="egenderError"></div>
+				 <input id="confirmButton" type="button" value="Confirm"/>
+				 <div id="loginError"> </div>
+		 </form>
+
+
+
+
+			<div id="profile" style="text-align:left">
+				<h2 align="left">My profile</h2>
+				<h3 align="left">Username: </h3><div id="vuser"></div>
+				<h3 align="left">Name: </h3><div id="vfname"></div>
+				<h3 align="left">Email: </h3><div id="vemail"></div>
+				<h3 align="left">Gender: </h3><div id="vgender"></div>
+				<input type="button" name="profile" id="editProfile" value="Edit Profile"/>
+			</div>
+
+
+			 <div id="highScoresTitle">
+					<h2>High Scores</h2>
+					<div id="highScores"></div>
+			 </div>
+		</center>
+	</body>
+</html>
